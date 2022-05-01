@@ -14,8 +14,10 @@
     "serve": "node dist/main.js"
   },
   "dependencies": {
+    "knex": "^2.0.0",
     "node-fetch": "2",
     "puppeteer": "^13.0.0",
+    "sqlite3": "^5.0.6",
     "winston": "^3.3.3"
   },
   "devDependencies": {
