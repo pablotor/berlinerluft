@@ -5,6 +5,8 @@ import { createLogger, format, transports } from 'winston';
  * https://github.com/winstonjs/winston/blob/master/examples/quick-start.js
  */
 
+const appName = process.env.npm_package_name || 'myApp';
+
 const logger = createLogger({
   level: 'info',
   format: format.combine(
@@ -15,15 +17,20 @@ const logger = createLogger({
     format.splat(),
     format.json(),
   ),
-  defaultMeta: { service: 'inbot' },
+  defaultMeta: { service: appName },
   transports: [
     //
     // - Write to all logs with level `info` and below to `quick-start-combined.log`.
     // - Write all logs error (and below) to `quick-start-error.log`.
     //
-    new transports.File({ filename: 'inbot-error.log', level: 'error' }),
-    new transports.File({ filename: 'inbot-combined.log' }),
-  ]
+    new transports.File({
+      filename: `logs/${appName}-error.log`,
+      level: 'error',
+    }),
+    new transports.File({
+      filename: `logs/${appName}-combined.log`,
+    }),
+  ],
 });
 
 //

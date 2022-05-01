@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true ,
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -30,10 +31,9 @@
     ]
   },
   "include": [
-    "src/**/*.ts"
+    "src"
   ],
   "exclude": [
     "node_modules",
-    "**/*.test.ts"
   ]
 }

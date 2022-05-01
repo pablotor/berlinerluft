@@ -1,7 +1,7 @@
 {
-  "name": "inbot",
+  "name": "berlinerluft",
   "version": "1.0.0",
-  "description": "a minimal lin bot",
+  "description": "a telegram bot for appartment seekers",
   "main": "src/main.ts",
   "repository": "https://github.com/pablotor/inbot.git",
   "author": "pablotor",
@@ -14,6 +14,7 @@
     "serve": "node dist/main.js"
   },
   "dependencies": {
+    "node-fetch": "2",
     "puppeteer": "^13.0.0",
     "winston": "^3.3.3"
   },
@@ -21,9 +22,13 @@
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.1",
     "@types/puppeteer": "^5.4.4",
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
-    "eslint": "^8.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.5",
     "jest": "^27.4.5",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
