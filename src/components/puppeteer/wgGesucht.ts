@@ -4,8 +4,8 @@ import { Apartment } from '../../types/main';
 import logger from '../../utils/logger';
 
 const urls = {
-  base: 'https://www.wg-gesucht.de',
-  search: 'https://www.wg-gesucht.de/wg-zimmer-und-1-zimmer-wohnungen-und-wohnungen-und-haeuser-in-Berlin.8.0+1+2+3.1.0.html?offer_filter=1&city_id=8&noDeact=1&categories%5B%5D=0&categories%5B%5D=1&categories%5B%5D=2&categories%5B%5D=3&rent_types%5B%5D=0&sMin=40&pagination=1&pu=',
+  base: process.env.URL_BASE,
+  search: process.env.URL_SEARCH,
 };
 
 // const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
@@ -27,6 +27,9 @@ const formatDates = (dates: string) => {
 
 export const removeCookieBanner = async (browser: Promise<puppeteer.Browser>) => {
   logger.info('Opening wg-gesucht');
+  if (!urls.base) {
+    throw new Error('URL_BASE not found. Check this param is present in .env file');
+  }
   const page = await (await browser).newPage();
   await page.goto(urls.base, { waitUntil: 'networkidle2' });
   const cookieBannerIsClosed = await page.$('.cmpboxclosed');
@@ -46,6 +49,9 @@ export const removeCookieBanner = async (browser: Promise<puppeteer.Browser>) =>
 
 export const getApartments = async (browser: Promise<puppeteer.Browser>) => {
   logger.info('Geting apartment search from wg-gesucht');
+  if (!urls.search) {
+    throw new Error('URL_SEARCH not found. Check this param is present in .env file');
+  }
   const apartments: Apartment[] = [];
   const page = await (await browser).newPage();
   await page.goto(urls.search, { waitUntil: 'networkidle2' });

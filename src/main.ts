@@ -14,11 +14,11 @@ const mainLoop = async () => {
     const exist = await apartmentExist(apartment.id);
     if (!exist) {
       logger.info(`New apartment found with ID ${apartment.id}`);
+      console.log(apartment);
       if (matchesFilters(apartment)) await sendApartmentAlert(apartment);
       else logger.info('Not what you are looking for');
       return insertApartment(apartment);
     }
-    logger.info(`Apartment with ID ${apartment.id} already present`);
     return null;
   }));
 
